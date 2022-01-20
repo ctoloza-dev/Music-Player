@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Music-Player</string>
+    <string name="perm_granted">Permisos Concedidos!</string>
+    <string name="perm_Disable">Permisos Desactivados</string>
+    <string name="perm_Disabled">Has deshabilitado los mensajes de permisos. Entra en permisos y activalos manualmente.</string>
+    <string name="perm_accept">Debe aceptar los permisos para el correcto funcionamiento de la App.</string>
+    <string name="accept">Aceptar</string>
+    <string name="deny">Denegar</string>
+    <string name="opt_yes">Si</string>
+    <string name="opt_no">No</string>
+    <string name="songs_image">Caratula Canción</string>
+    <string name="file_name">Nombre Archivo</string>
+</resources>

@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Music-Player</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="perm_granted">Permission Granted!</string>
+    <string name="perm_Disable"> Permissions Disabled </string>
+    <string name="perm_Disabled"> You have disabled permission messages. Enter permissions and activate them manually. </string>
+    <string name="perm_accept"> You must accept the permissions for the correct functioning of the App. </string>
+    <string name="accept">Accept</string>
+    <string name="deny">Deny</string>
+    <string name="opt_yes">Yes</string>
+    <string name="opt_no">No</string>
+    <string name="songs_image">Songs Image</string>
+    <string name="file_name">File Name</string>
 </resources>
