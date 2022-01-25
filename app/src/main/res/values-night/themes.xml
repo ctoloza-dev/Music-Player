@@ -14,20 +14,21 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="animation" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_centerInParent">true</item>
-        <item name="android:background">@color/colorPrimaryDark</item>
+    <style name="animation" parent="Theme.MusicPlayer">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+        <item name="layout_constraintDimensionRatio">1:1</item>
+        <item name="layout_constraintLeft_toLeftOf">parent</item>
+        <item name="layout_constraintRight_toRightOf">parent</item>
+        <item name="android:background">@color/black</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+        <item name="layout_constraintWidth_percent">0.5</item>
         <item name="lottie_autoPlay">true</item>
-        <item name="android:elevation">5dp</item>
         <item name="lottie_loop">true</item>
     </style>
 
-    <style name="splashBg" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="android:background">@color/colorPrimaryDark</item>
-        <item name="lottie_rawRes">@raw/animation</item>
-        <item name="lottie_autoPlay">true</item>
-        <item name="lottie_loop">true</item>
+    <style name="splashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 </resources>

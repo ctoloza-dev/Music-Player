@@ -13,8 +13,9 @@ class Splash : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         animation = findViewById(R.id.animation)
+        val secs: Long = 2
         Handler().postDelayed({
             startActivity(Intent(this@Splash, MainActivity::class.java))
-        }, 5000)
+        }, (secs * 1000))
     }
 }

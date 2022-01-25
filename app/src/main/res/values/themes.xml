@@ -21,17 +21,14 @@
         <item name="layout_constraintDimensionRatio">1:1</item>
         <item name="layout_constraintLeft_toLeftOf">parent</item>
         <item name="layout_constraintRight_toRightOf">parent</item>
-        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:background">@color/white</item>
         <item name="layout_constraintTop_toTopOf">parent</item>
         <item name="layout_constraintWidth_percent">0.5</item>
         <item name="lottie_autoPlay">true</item>
         <item name="lottie_loop">true</item>
     </style>
 
-    <style name="splashBg" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="android:background">@color/colorPrimary</item>
-        <item name="lottie_rawRes">@raw/animation</item>
-        <item name="lottie_autoPlay">true</item>
-        <item name="lottie_loop">true</item>
+    <style name="splashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+       <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 </resources>
