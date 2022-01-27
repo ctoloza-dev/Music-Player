@@ -8,5 +8,5 @@
         android:id="@+id/option"
         style="@style/optionButton"
         android:text="@string/shuffle"
-        android:drawableTop="@drawable/ic_shuffle" />
+        android:drawableTop="@drawable/ico_shuffle" />
 </androidx.cardview.widget.CardView>

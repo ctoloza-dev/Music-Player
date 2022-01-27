@@ -25,9 +25,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun initOptions() {
         val list = arrayListOf<MenuModel>()
-        list.add(MenuModel(getString(R.string.shuffle), R.drawable.ic_shuffle))
-        list.add(MenuModel(getString(R.string.favourites), R.drawable.ic_favorite))
-        list.add(MenuModel(getString(R.string.playlist), R.drawable.ic_playlist))
+        list.add(MenuModel(getString(R.string.shuffle), R.drawable.ico_shuffle))
+        list.add(MenuModel(getString(R.string.favourites), R.drawable.ico_favorite))
+        list.add(MenuModel(getString(R.string.playlist), R.drawable.ico_playlist))
 
         val recycler = findViewById<View>(R.id.opts) as RecyclerView
         recycler.adapter = OptionsAdapter(this, list)

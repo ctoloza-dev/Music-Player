@@ -9,13 +9,14 @@
         android:roundIcon="@drawable/player_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.MusicPlayer">
+        <activity android:name=".PlayerActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true" />
         <activity
             android:name=".Splash"
-            android:theme="@style/splashTheme"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/splashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
