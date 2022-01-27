@@ -11,4 +11,8 @@
     <string name="opt_no">No</string>
     <string name="songs_image">Caratula Canción</string>
     <string name="file_name">Nombre Archivo</string>
+    <string name="shuffle">Aleatorio</string>
+    <string name="playlist">Playlist</string>
+    <string name="favourites">Favoritos</string>
+    <string name="total_song">Canciones Totales:</string>
 </resources>

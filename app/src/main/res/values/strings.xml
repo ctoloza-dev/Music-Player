@@ -11,4 +11,8 @@
     <string name="opt_no">No</string>
     <string name="songs_image">Songs Image</string>
     <string name="file_name">File Name</string>
+    <string name="shuffle">Shuffle</string>
+    <string name="playlist">Playlist</string>
+    <string name="favourites">Favourites</string>
+    <string name="total_song">Total Songs:</string>
 </resources>
