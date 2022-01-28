@@ -12,37 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-    </style>
-
-    <style name="animation" parent="Theme.MusicPlayer">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="layout_constraintBottom_toBottomOf">parent</item>
-        <item name="layout_constraintDimensionRatio">1:1</item>
-        <item name="layout_constraintLeft_toLeftOf">parent</item>
-        <item name="layout_constraintRight_toRightOf">parent</item>
-        <item name="android:background">@color/black</item>
-        <item name="layout_constraintTop_toTopOf">parent</item>
-        <item name="layout_constraintWidth_percent">0.5</item>
-        <item name="lottie_autoPlay">true</item>
-        <item name="lottie_loop">true</item>
-    </style>
-
-    <style name="splashTheme" parent="Theme.MusicPlayer">
-        <item name="android:windowBackground">@drawable/splash_screen</item>
-    </style>
-
-    <style name="optionButton" parent="Widget.AppCompat.Button.Borderless">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="drawableTint">@color/colorAccent</item>
-        <item name="android:windowBackground">@drawable/splash_screen</item>
-        <item name="android:textColor">@color/colorAccent</item>
-    </style>
-
-    <style name="tvDesign" parent="Widget.AppCompat.Button.Borderless">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/colorAccent</item>
+        <item name="animBack">@color/black</item>
+        <item name="accent">@color/colorAccent</item>
+        <item name="primary">@color/colorPrimary</item>
     </style>
 </resources>

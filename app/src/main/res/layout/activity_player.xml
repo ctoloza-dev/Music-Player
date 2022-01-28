@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -8,34 +10,98 @@
             type="String" />
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="vertical"
         tools:context=".PlayerActivity">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ico_prev" />
+                style="@style/playerBtn"
+                android:contentDescription="@string/back"
+                android:src="@drawable/ico_back" />
 
 
             <TextView
-                style="@style/tvDesign"
+                style="@style/tvDesign1"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:text="songName"
+                android:text="@string/app_name"
                 android:textSize="20sp" />
 
             <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ico_favorite" />
+                style="@style/playerBtn"
+                android:contentDescription="@string/like"
+                android:src="@drawable/ico_favorite_empty" />
         </LinearLayout>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            style="@style/albumArt"
+            android:src="@drawable/splash" />
+
+        <TextView
+            style="@style/tvDesign"
+            android:layout_marginHorizontal="20dp"
+            android:text="@{songName}"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                style="@style/musicBtn2"
+                app:icon="@drawable/ico_prev" />
+
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                style="@style/musicBtn"
+                android:layout_marginHorizontal="15dp"
+                app:icon="@drawable/ico_pause" />
+
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                style="@style/musicBtn2"
+                app:icon="@drawable/ico_next" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_margin="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/tvDesign2"
+                android:text="@string/start_tv"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <androidx.appcompat.widget.AppCompatSeekBar
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:thumbTint="?accent"
+                android:layout_weight="1" />
+
+            <TextView
+                style="@style/tvDesign2"
+                android:text="@string/end_tv"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+
     </LinearLayout>
 </layout>

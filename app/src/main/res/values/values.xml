@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="animBack" format="color" />
+    <attr name="accent" format="color" />
+    <attr name="primary" format="color" />
+</resources>

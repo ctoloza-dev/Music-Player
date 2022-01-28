@@ -15,7 +15,7 @@ class Splash : AppCompatActivity() {
         animation = findViewById(R.id.animation)
         val secs: Long = 2
         Handler().postDelayed({
-            startActivity(Intent(this@Splash, MainActivity::class.java))
+            startActivity(Intent(this@Splash, PlayerActivity::class.java))
         }, (secs * 1000))
     }
 }

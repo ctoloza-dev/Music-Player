@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="animation" parent="Theme.MusicPlayer">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+        <item name="layout_constraintDimensionRatio">1:1</item>
+        <item name="layout_constraintLeft_toLeftOf">parent</item>
+        <item name="layout_constraintRight_toRightOf">parent</item>
+        <item name="android:background">?animBack</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+        <item name="layout_constraintWidth_percent">0.5</item>
+        <item name="lottie_autoPlay">true</item>
+        <item name="lottie_loop">true</item>
+    </style>
+
+    <style name="splashTheme" parent="Theme.MusicPlayer">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
+    <style name="optionButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="drawableTint">?accent</item>
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="android:textColor">?accent</item>
+    </style>
+
+    <style name="tvDesign" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">?accent</item>
+    </style>
+
+    <style name="tvDesign1" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">?primary</item>
+    </style>
+
+    <style name="tvDesign2" parent="Theme.MusicPlayer">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">?accent</item>
+    </style>
+
+    <style name="playerBtn" parent="Theme.MusicPlayer">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="tint">?accent</item>
+    </style>
+
+    <style name="musicBtn" parent="Widget.MaterialComponents.ExtendedFloatingActionButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="backgroundTint">?accent</item>
+        <item name="shapeAppearanceOverlay">@style/curved</item>
+        <item name="iconSize">40dp</item>
+        <item name="iconTint">@color/grey</item>
+    </style>
+
+    <style name="musicBtn2" parent="Widget.MaterialComponents.ExtendedFloatingActionButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="backgroundTint">?primary</item>
+        <item name="iconSize">40dp</item>
+        <item name="iconTint">@color/black</item>
+    </style>
+
+    <style name="curved">
+        <item name="cornerSize">15%</item>
+    </style>
+
+    <style name="albumArt" parent="Theme.MusicPlayer">
+        <item name="android:layout_width">250dp</item>
+        <item name="android:layout_height">250dp</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="shapeAppearanceOverlay">@style/curved</item>
+        <item name="strokeColor">?primary</item>
+        <item name="strokeWidth">5dp</item>
+    </style>
+</resources>

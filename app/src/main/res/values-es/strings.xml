@@ -15,4 +15,8 @@
     <string name="playlist">Playlist</string>
     <string name="favourites">Favoritos</string>
     <string name="total_song">Canciones Totales:</string>
+    <string name="back">Volver</string>
+    <string name="like">Me gusta</string>
+    <string name="start_tv">00:00</string>
+    <string name="end_tv">Cargando...</string>
 </resources>
