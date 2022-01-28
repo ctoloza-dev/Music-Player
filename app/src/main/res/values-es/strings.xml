@@ -18,5 +18,9 @@
     <string name="back">Volver</string>
     <string name="like">Me gusta</string>
     <string name="start_tv">00:00</string>
-    <string name="end_tv">Cargando...</string>
+    <string name="end_tv">Cargando…</string>
+    <string name="repeat">Repetir</string>
+    <string name="equalizer">Ecualizador</string>
+    <string name="timer">Temporizador</string>
+    <string name="share">Compartir</string>
 </resources>

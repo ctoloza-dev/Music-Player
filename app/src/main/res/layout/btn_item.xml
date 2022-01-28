@@ -1,12 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_centerInParent="true">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Button
-        android:id="@+id/option"
-        style="@style/optionButton"
-        android:text="@string/shuffle"
-        android:drawableTop="@drawable/ico_shuffle" />
-</androidx.cardview.widget.CardView>
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isImage"
+            type="Boolean" />
+
+        <variable
+            name="image"
+            type="Integer" />
+
+        <variable
+            name="text"
+            type="String" />
+
+        <variable
+            name="onclick"
+            type="com.music_player.interfaces.OnClick" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:background="@android:color/transparent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/option"
+            style="@style/optionButton"
+            android:drawableTop="@{context.getDrawable(image)}"
+            android:onClick="@{(view)->onclick.onCLick(view)}"
+            android:text="@{text}"
+            android:visibility="@{!isImage?View.VISIBLE:View.GONE}" />
+
+        <ImageButton
+            android:id="@+id/optionImg"
+            style="@style/optionButton"
+            android:contentDescription="@{text}"
+            android:onClick="@{(view)->onclick.onCLick(view)}"
+            android:src="@{context.getDrawable(image)}"
+            android:visibility="@{isImage?View.VISIBLE:View.GONE,default=gone}" />
+
+    </androidx.cardview.widget.CardView>
+</layout>

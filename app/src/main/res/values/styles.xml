@@ -31,6 +31,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">?accent</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="tvDesign1" parent="Widget.AppCompat.Button.Borderless">
@@ -42,7 +43,10 @@
     <style name="tvDesign2" parent="Theme.MusicPlayer">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:textColor">?accent</item>
+        <item name="android:textColor">?primary</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
     </style>
 
     <style name="playerBtn" parent="Theme.MusicPlayer">

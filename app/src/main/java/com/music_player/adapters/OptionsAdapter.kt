@@ -1,37 +1,53 @@
 package com.music_player.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.music_player.MainActivity
 import com.music_player.R
+import com.music_player.databinding.BtnItemBinding
+import com.music_player.interfaces.OnClick
 import com.music_player.models.MenuModel
 
+
 class OptionsAdapter(
-    private var ctx: Context,
-    private var mFiles: ArrayList<MenuModel>
+    private var mFiles: ArrayList<MenuModel>,
+    private var isImage: Boolean,
+    private var onClick: OnClick
 ) :
     RecyclerView.Adapter<OptionsAdapter.GenViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GenViewHolder =
-        GenViewHolder(LayoutInflater.from(ctx).inflate(R.layout.btn_item, parent, false))
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GenViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        return GenViewHolder(
+            DataBindingUtil.inflate(
+                inflater,
+                R.layout.btn_item,
+                parent,
+                false
+            )
+        )
+    }
 
     override fun onBindViewHolder(holder: GenViewHolder, position: Int) {
         val item = mFiles[position]
-        holder.option.contentDescription = item.btn
-        holder.option.text = item.btn
-        holder.option.setCompoundDrawablesWithIntrinsicBounds(0, item.drawable, 0, 0)
-        holder.option.setOnClickListener(MainActivity.onCLick)
-
+        holder.binding!!.text = item.btn
+        holder.binding!!.image = item.drawable
+        holder.binding!!.isImage = isImage
+        holder.binding!!.onclick = onClick
     }
 
     override fun getItemCount(): Int = mFiles.size
 
-    class GenViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var option: Button = itemView.findViewById(R.id.option)
+    inner class GenViewHolder(binding: BtnItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        var binding: BtnItemBinding? = null
+
+        init {
+            this.binding = binding
+        }
+
 
     }
 }

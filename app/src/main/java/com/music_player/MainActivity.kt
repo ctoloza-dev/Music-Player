@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.music_player.adapters.OptionsAdapter
 import com.music_player.databinding.ActivityMainBinding
+import com.music_player.interfaces.OnClick
 import com.music_player.models.MenuModel
 import com.music_player.utils.logs.Logger
 
@@ -30,16 +31,17 @@ class MainActivity : AppCompatActivity() {
         list.add(MenuModel(getString(R.string.playlist), R.drawable.ico_playlist))
 
         val recycler = findViewById<View>(R.id.opts) as RecyclerView
-        recycler.adapter = OptionsAdapter(this, list)
+        recycler.adapter = OptionsAdapter(list, false, onClick)
         recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recycler.setHasFixedSize(true)
         recycler.isNestedScrollingEnabled = false
         totalSongs = 400
     }
 
+    private val onClick = object : OnClick {
+        override fun onCLick(v: View) {
+            Logger.error("Data: ${v.contentDescription}")
+        }
 
-    companion object {
-        val onCLick: View.OnClickListener =
-            View.OnClickListener { v -> Logger.error("Data: ${v!!.contentDescription} ") }
     }
 }
