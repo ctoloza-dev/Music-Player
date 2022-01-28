@@ -27,6 +27,15 @@
         <item name="android:textColor">?accent</item>
     </style>
 
+    <style name="optionButton2" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <!--        <item name="tint">@color/black</item>-->
+        <item name="tint">@color/black</item>
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="android:textColor">?accent</item>
+    </style>
+
     <style name="tvDesign" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -49,6 +58,15 @@
         <item name="android:textSize">15sp</item>
     </style>
 
+    <style name="tvDesign3" parent="Theme.MusicPlayer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
     <style name="playerBtn" parent="Theme.MusicPlayer">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -59,18 +77,18 @@
     <style name="musicBtn" parent="Widget.MaterialComponents.ExtendedFloatingActionButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="backgroundTint">?accent</item>
+        <item name="backgroundTint">?primary</item>
         <item name="shapeAppearanceOverlay">@style/curved</item>
         <item name="iconSize">40dp</item>
-        <item name="iconTint">@color/grey</item>
+        <item name="iconTint">@color/black</item>
     </style>
 
     <style name="musicBtn2" parent="Widget.MaterialComponents.ExtendedFloatingActionButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="backgroundTint">?primary</item>
+        <item name="backgroundTint">?accent</item>
         <item name="iconSize">40dp</item>
-        <item name="iconTint">@color/black</item>
+        <item name="iconTint">@color/grey</item>
     </style>
 
     <style name="curved">
