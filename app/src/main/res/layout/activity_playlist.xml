@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activities.PlaylistActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?accent"
@@ -25,7 +25,7 @@
             style="@style/tvDesign3"
             android:text="@string/playlist" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         style="@style/musicBtn2"

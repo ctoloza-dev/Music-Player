@@ -24,12 +24,13 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
-        android:background="@android:color/transparent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent">
 
         <Button
             android:id="@+id/option"
             style="@style/optionButton"
+            android:contentDescription="@{text}"
             android:drawableTop="@{context.getDrawable(image)}"
             android:onClick="@{(view)->onclick.onCLick(view)}"
             android:text="@{text}"

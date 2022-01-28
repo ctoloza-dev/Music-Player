@@ -1,5 +1,6 @@
 package com.music_player.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +12,7 @@ import com.music_player.adapters.OptionsAdapter
 import com.music_player.databinding.ActivityMainBinding
 import com.music_player.interfaces.OnClick
 import com.music_player.models.MenuModel
-import com.music_player.utils.logs.Logger
+import com.music_player.utils.PermissionStatus
 
 
 class MainActivity : AppCompatActivity() {
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestRuntimePerms()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         initOptions()
         binding!!.total = totalSongs
@@ -36,13 +38,38 @@ class MainActivity : AppCompatActivity() {
         recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recycler.setHasFixedSize(true)
         recycler.isNestedScrollingEnabled = false
-        totalSongs = 400
     }
 
     private val onClick = object : OnClick {
         override fun onCLick(v: View) {
-            Logger.error("Data: ${v.contentDescription}")
+            var clazz: Class<*>? = null
+            if (v.contentDescription != null) {
+                clazz = when {
+                    v.contentDescription.equals(getString(R.string.shuffle)) -> {
+                        PlayerActivity::class.java
+                    }
+                    v.contentDescription.equals(getString(R.string.favourites)) -> {
+                        FavouriteActivity::class.java
+                    }
+                    v.contentDescription.equals(getString(R.string.playlist)) -> {
+                        PlaylistActivity::class.java
+                    }
+                    else -> {
+                        null
+                    }
+                }
+            }
+            if (clazz != null) {
+                startActivity(Intent(this@MainActivity, clazz))
+            }
         }
+    }
 
+    private fun requestRuntimePerms() {
+        val permissionStatus = PermissionStatus(this)
+        if (!permissionStatus.validatePermissions()) {
+            permissionStatus.confirmPermissionMsg()
+            return
+        }
     }
 }

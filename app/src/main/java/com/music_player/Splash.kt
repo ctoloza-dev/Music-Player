@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.LottieAnimationView
-import com.music_player.activities.PlayerActivity
+import com.music_player.activities.MainActivity
 
 lateinit var animation: LottieAnimationView
 
@@ -16,7 +16,7 @@ class Splash : AppCompatActivity() {
         animation = findViewById(R.id.animation)
         val secs: Long = 2
         Handler().postDelayed({
-            startActivity(Intent(this@Splash, PlayerActivity::class.java))
+            startActivity(Intent(this@Splash, MainActivity::class.java))
         }, (secs * 1000))
     }
 }
