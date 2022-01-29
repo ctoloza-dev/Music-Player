@@ -1,6 +1,6 @@
 package com.music_player.utils
 
-import android.Manifest.permission
+import android.Manifest.permission.*
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -15,8 +15,8 @@ open class PermissionStatus(var context: Context) {
     private var activity: Activity = context as Activity
     private var utils = UtilitiesImpl(context)
     private var permits = arrayOf(
-        permission.WRITE_EXTERNAL_STORAGE,
-        permission.INTERNET
+        READ_EXTERNAL_STORAGE,
+        INTERNET
     )
 
 
@@ -42,7 +42,7 @@ open class PermissionStatus(var context: Context) {
      * return true si no se marca
      * return false si se marca
      */
-    fun validatePermissionsMsg(): Boolean {
+    private fun validatePermissionsMsg(): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             for (idPermission in permits) {
                 if (!activity.shouldShowRequestPermissionRationale(idPermission)) {

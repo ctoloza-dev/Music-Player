@@ -2,9 +2,12 @@ package com.music_player.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.music_player.R
@@ -17,14 +20,28 @@ import com.music_player.utils.PermissionStatus
 
 class MainActivity : AppCompatActivity() {
     private var totalSongs = 0
-    private var binding: ActivityMainBinding? = null
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var toggle: ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestRuntimePerms()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        toggle = ActionBarDrawerToggle(
+            this,
+            binding.root as DrawerLayout?,
+            R.string.open,
+            R.string.close
+        )
+        (binding.root as DrawerLayout).addDrawerListener(toggle)
+        toggle.syncState()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         initOptions()
-        binding!!.total = totalSongs
+        binding.total = totalSongs
+    }
+
+    override fun onResume() {
+        super.onResume()
+        requestRuntimePerms()
     }
 
     private fun initOptions() {
@@ -66,10 +83,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun requestRuntimePerms() {
-        val permissionStatus = PermissionStatus(this)
+        val permissionStatus = PermissionStatus(this@MainActivity)
         if (!permissionStatus.validatePermissions()) {
             permissionStatus.confirmPermissionMsg()
             return
         }
+    }
+
+    override fun onBackPressed() {
+        //commented to avoid go to splash view
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (toggle.onOptionsItemSelected(item)) {
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
