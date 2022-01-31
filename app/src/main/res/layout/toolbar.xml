@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/toolbar_style"
+        app:contentInsetStartWithNavigation="0dp"
+        app:elevation="3dp"
+        app:navigationIcon="@drawable/ico_menu">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search"
+            style="@style/search" />
+    </androidx.appcompat.widget.Toolbar>
+</layout>
