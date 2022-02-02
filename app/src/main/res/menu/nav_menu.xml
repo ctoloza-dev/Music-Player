@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/item1"
-        android:title="item1" />
-    <item
-        android:id="@+id/ite2"
-        android:title="item2" />
-    <item
-        android:id="@+id/item3"
-        android:title="item3" />
-    <item
-        android:id="@+id/item4"
-        android:title="item4" />
+    <group android:id="@+id/principal">
+        <item
+            android:icon="@drawable/ico_library"
+            android:title="@string/library" />
+        <item
+            android:icon="@drawable/ico_folder"
+            android:title="@string/folder" />
+        <item
+            android:icon="@drawable/ico_playqueue"
+            android:title="@string/play_queue" />
+        <item
+            android:icon="@drawable/ico_equalizer"
+            android:title="@string/equalizer" />
+    </group>
+
+    <group android:id="@+id/second">
+        <item
+            android:icon="@drawable/ico_settings"
+            android:title="@string/setting" />
+        <item
+            android:icon="@drawable/ico_about"
+            android:title="@string/about" />
+    </group>
+
 </menu>

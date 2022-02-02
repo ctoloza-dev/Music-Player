@@ -9,7 +9,8 @@
     <string name="deny">Denegar</string>
     <string name="opt_yes">Si</string>
     <string name="opt_no">No</string>
-    <string name="songs_image">Caratula Canción</string>
+    <string name="songs_name">Nombre Canción</string>
+    <string name="songs_album">Album</string>
     <string name="file_name">Nombre Archivo</string>
     <string name="shuffle">Aleatorio</string>
     <string name="playlist">Playlist</string>
@@ -25,4 +26,10 @@
     <string name="share">Compartir</string>
     <string name="open">Abrir</string>
     <string name="close">Cerrar</string>
+    <string name="setting">Ajustes</string>
+    <string name="library">Biblioteca</string>
+    <string name="folder">Carpetas</string>
+    <string name="play_queue">Cola de reproduccion</string>
+    <string name="scan">Escanear Datos</string>
+    <string name="about">Acerca de</string>
 </resources>

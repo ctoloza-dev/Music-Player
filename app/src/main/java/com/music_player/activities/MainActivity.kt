@@ -3,6 +3,7 @@ package com.music_player.activities
 import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.provider.MediaStore.Audio.Media
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -14,18 +15,22 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.music_player.R
+import com.music_player.adapters.MusicAdapter
 import com.music_player.adapters.OptionsAdapter
 import com.music_player.databinding.ActivityMainBinding
 import com.music_player.interfaces.OnClick
 import com.music_player.models.MenuModel
+import com.music_player.models.SongsData
 import com.music_player.utils.PermissionStatus
 import com.music_player.utils.logs.Logger
+import java.io.File
 
 
 class MainActivity : AppCompatActivity() {
     private var totalSongs = 0
     private lateinit var binding: ActivityMainBinding
     private lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var musicAdapter: MusicAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,16 +49,7 @@ class MainActivity : AppCompatActivity() {
         requestRuntimePerms()
     }
 
-    private fun initViews() {
-        val toolbar = binding.toolbar.root as Toolbar?
-        toggle = ActionBarDrawerToggle(
-            this,
-            binding.root as DrawerLayout?,
-            toolbar,
-            R.string.open,
-            R.string.close
-        )
-        (binding.root as DrawerLayout).addDrawerListener(toggle)
+    private fun initOptions() {
         val search = binding.toolbar.search as SearchView?
         Logger.error("Search !=null ${(search != null)}")
 
@@ -62,7 +58,10 @@ class MainActivity : AppCompatActivity() {
                 search.setQuery("", false)
                 search.clearFocus()
             }
-
+        binding.navView.setNavigationItemSelectedListener { item ->
+            Logger.error("Clicked ${item.title}")
+            true
+        }
         val list = arrayListOf<MenuModel>()
         list.add(MenuModel(getString(R.string.shuffle), R.drawable.ico_shuffle))
         list.add(MenuModel(getString(R.string.favourites), R.drawable.ico_favorite))
@@ -74,6 +73,36 @@ class MainActivity : AppCompatActivity() {
         recycler.setHasFixedSize(true)
         recycler.isNestedScrollingEnabled = false
     }
+
+    private fun initViews() {
+        initOptions()
+        val toolbar = binding.toolbar.root as Toolbar?
+        toggle = ActionBarDrawerToggle(
+            this,
+            binding.root as DrawerLayout?,
+            toolbar,
+            R.string.open,
+            R.string.close
+        )
+        (binding.root as DrawerLayout).addDrawerListener(toggle)
+
+        /*val musicList = arrayListOf<String>()
+        for (i in 1..400) {
+            musicList.add("$i Song")
+        }*/
+        val musicList = getAllAudio()
+        Logger.error(musicList.toString())
+
+        binding.songsList.setHasFixedSize(true)
+        binding.songsList.setItemViewCacheSize(13)
+        binding.songsList.layoutManager =
+            LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
+        musicAdapter = MusicAdapter(this@MainActivity, musicList)
+        binding.songsList.adapter = musicAdapter
+        totalSongs = musicAdapter.itemCount
+
+    }
+
 
     private val onClick = object : OnClick {
         override fun onCLick(v: View) {
@@ -110,5 +139,53 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         //commented to avoid go to splash view
+    }
+
+    private fun getAllAudio(): ArrayList<SongsData> {
+        val list = arrayListOf<SongsData>()
+        val selection = Media.IS_MUSIC + " !=0"
+        val projection = arrayOf(
+            Media._ID,
+            Media.TITLE,
+            Media.ALBUM,
+            Media.ARTIST,
+            Media.DURATION,
+            Media.DATA,
+            Media.DATE_ADDED
+        )
+        val cursor = this.contentResolver.query(
+            Media.EXTERNAL_CONTENT_URI,
+            projection,
+            selection,
+            null,
+            Media.DATE_ADDED + " DESC",
+            null
+        )
+        val music = HashMap<Int, String>()
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                projection.forEachIndexed { index, s ->
+                    if (s != Media.DATE_ADDED) {
+                        music[index] = cursor.getString(cursor.getColumnIndex(s))
+                        val song =
+                            SongsData(
+                                music[0],
+                                music[1],
+                                music[2],
+                                music[3],
+                                music[4],
+                                music[5]!!.toLong()
+                            )
+                        val file = File(song.path!!)
+                        if (file.exists())
+                            list.add(song)
+
+                    }
+                }
+                Logger.error("Data:\n${music}")
+            } while (cursor.moveToNext())
+            cursor.close()
+        }
+        return list
     }
 }
