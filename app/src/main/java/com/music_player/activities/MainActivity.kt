@@ -1,6 +1,8 @@
 package com.music_player.activities
 
 import android.content.Intent
+import android.database.Cursor.FIELD_TYPE_INTEGER
+import android.database.Cursor.FIELD_TYPE_STRING
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.provider.MediaStore.Audio.Media
@@ -23,7 +25,11 @@ import com.music_player.models.MenuModel
 import com.music_player.models.SongsData
 import com.music_player.utils.PermissionStatus
 import com.music_player.utils.logs.Logger
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.io.File
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -85,22 +91,19 @@ class MainActivity : AppCompatActivity() {
             R.string.close
         )
         (binding.root as DrawerLayout).addDrawerListener(toggle)
+        loadSongs().start()
+    }
 
-        /*val musicList = arrayListOf<String>()
-        for (i in 1..400) {
-            musicList.add("$i Song")
-        }*/
+    private fun loadSongs() = CoroutineScope(Dispatchers.Main).launch {
         val musicList = getAllAudio()
-        Logger.error(musicList.toString())
-
+        Collections.sort(musicList, CustomComparator())
         binding.songsList.setHasFixedSize(true)
         binding.songsList.setItemViewCacheSize(13)
         binding.songsList.layoutManager =
             LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
         musicAdapter = MusicAdapter(this@MainActivity, musicList)
         binding.songsList.adapter = musicAdapter
-        totalSongs = musicAdapter.itemCount
-
+        binding.total = musicAdapter.itemCount
     }
 
 
@@ -143,7 +146,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun getAllAudio(): ArrayList<SongsData> {
         val list = arrayListOf<SongsData>()
-        val selection = Media.IS_MUSIC + " !=0"
+        val selection =
+            "${Media.IS_MUSIC} !=0 " +
+                    "AND  ${Media.MIME_TYPE}='audio/mpeg'" +
+                    "AND ${Media.DURATION}  > 60000 " +
+                    "AND ${Media.RELATIVE_PATH}  like '%Music%' "
         val projection = arrayOf(
             Media._ID,
             Media.TITLE,
@@ -151,41 +158,65 @@ class MainActivity : AppCompatActivity() {
             Media.ARTIST,
             Media.DURATION,
             Media.DATA,
-            Media.DATE_ADDED
+            Media.DATE_ADDED,
+            Media.RELATIVE_PATH,
+            Media.DISPLAY_NAME
         )
         val cursor = this.contentResolver.query(
             Media.EXTERNAL_CONTENT_URI,
             projection,
             selection,
             null,
-            Media.DATE_ADDED + " DESC",
+            Media.DISPLAY_NAME + " ASC",
             null
         )
-        val music = HashMap<Int, String>()
+        val music = HashMap<Int, Any>()
         if (cursor != null && cursor.moveToFirst()) {
             do {
                 projection.forEachIndexed { index, s ->
+                    val idx = cursor.getColumnIndex(s)
                     if (s != Media.DATE_ADDED) {
-                        music[index] = cursor.getString(cursor.getColumnIndex(s))
-                        val song =
-                            SongsData(
-                                music[0],
-                                music[1],
-                                music[2],
-                                music[3],
-                                music[4],
-                                music[5]!!.toLong()
-                            )
-                        val file = File(song.path!!)
-                        if (file.exists())
-                            list.add(song)
-
+                        music[index] = when (cursor.getType(idx)) {
+                            FIELD_TYPE_STRING -> cursor.getString(idx)
+                            FIELD_TYPE_INTEGER -> cursor.getLong(idx)
+                            else -> ""
+                        }
                     }
                 }
-                Logger.error("Data:\n${music}")
+//                Logger.info("${music[8]}  - ${music[1]}")
+                val song =
+                    SongsData(
+                        music[0].toString(),
+                        music[1].toString(),
+                        music[2].toString(),
+                        music[3].toString(),
+                        music[4]!!.toString().toLong(),
+                        music[5].toString(),
+                        music[8].toString()
+                    )
+                val file = File(song.path!!)
+                if (file.exists())
+                    list.add(song)
+
+//                    Logger.error("$song")
             } while (cursor.moveToNext())
             cursor.close()
         }
         return list
     }
+}
+
+class CustomComparator : Comparator<SongsData> {
+
+    override fun compare(song1: SongsData, song2: SongsData): Int {
+        val display1 = song1.display
+        val display2 = song2.display
+//        val disTrim1=display1!!.substring(display1.indexOf("-"))
+//        val disTrim2=display2!!.substring(display2.indexOf("-"))
+        Logger.info("$display1 - $display2")
+//        Logger.info("$disTrim1 - $disTrim2")
+        return display1!!.substring(display1.indexOf("-") + 1)
+            .compareTo(display2!!.substring(display2.indexOf("-") + 1))
+    }
+
 }
