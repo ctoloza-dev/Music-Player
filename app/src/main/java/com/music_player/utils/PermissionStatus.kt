@@ -1,6 +1,5 @@
 package com.music_player.utils
 
-import android.Manifest.permission.*
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -9,15 +8,12 @@ import android.net.Uri
 import android.os.Build
 import android.provider.Settings
 import cn.pedant.SweetAlert.SweetAlertDialog
+import com.music_player.Globals.Companion.permits
 import com.music_player.R
 
 open class PermissionStatus(var context: Context) {
     private var activity: Activity = context as Activity
     private var utils = UtilitiesImpl(context)
-    private var permits = arrayOf(
-        READ_EXTERNAL_STORAGE,
-        INTERNET
-    )
 
 
     fun reqPermissions() {

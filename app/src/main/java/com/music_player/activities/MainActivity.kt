@@ -3,6 +3,7 @@ package com.music_player.activities
 import android.content.Intent
 import android.database.Cursor.FIELD_TYPE_INTEGER
 import android.database.Cursor.FIELD_TYPE_STRING
+import android.net.Uri
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.provider.MediaStore.Audio.Media
@@ -157,8 +158,9 @@ class MainActivity : AppCompatActivity() {
             Media.ALBUM,
             Media.ARTIST,
             Media.DURATION,
-            Media.DATA,
             Media.DATE_ADDED,
+            Media.DATA,
+            Media.ALBUM_ID,
             Media.RELATIVE_PATH,
             Media.DISPLAY_NAME
         )
@@ -184,6 +186,9 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 //                Logger.info("${music[8]}  - ${music[1]}")
+                val uri = Uri.parse("content://media/external/audio/albumart")
+                val artUri = Uri.withAppendedPath(uri, music[7].toString()).toString()
+
                 val song =
                     SongsData(
                         music[0].toString(),
@@ -191,8 +196,9 @@ class MainActivity : AppCompatActivity() {
                         music[2].toString(),
                         music[3].toString(),
                         music[4]!!.toString().toLong(),
-                        music[5].toString(),
-                        music[8].toString()
+                        music[6].toString(),
+                        artUri,
+                        music[music.size - 1].toString()
                     )
                 val file = File(song.path!!)
                 if (file.exists())
