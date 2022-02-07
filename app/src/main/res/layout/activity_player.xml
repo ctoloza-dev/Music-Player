@@ -47,14 +47,15 @@
         </LinearLayout>
 
         <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/songImage"
             style="@style/albumArt"
             android:src="@drawable/splash" />
 
         <TextView
+            android:id="@+id/songName"
             style="@style/tvDesign"
             android:layout_marginHorizontal="20dp"
             android:layout_weight="1"
-            android:text="@{songName}"
             android:textSize="18sp" />
 
         <LinearLayout
@@ -71,6 +72,7 @@
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 style="@style/musicBtn"
+                android:id="@+id/playPause"
                 android:layout_marginHorizontal="15dp"
                 app:icon="@drawable/ico_pause" />
 

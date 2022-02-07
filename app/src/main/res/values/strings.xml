@@ -9,8 +9,8 @@
     <string name="deny">Deny</string>
     <string name="opt_yes">Yes</string>
     <string name="opt_no">No</string>
-    <string name="songs_name">Songs Name</string>
-    <string name="songs_album">Songs Album</string>
+    <string name="songs_name">Unknown Song</string>
+    <string name="songs_album">Unknown Song</string>
     <string name="file_name">File Name</string>
     <string name="shuffle">Shuffle</string>
     <string name="playlist">Playlist</string>

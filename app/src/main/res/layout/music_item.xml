@@ -7,6 +7,10 @@
             name="data"
             type="com.music_player.models.SongsData" />
 
+        <variable
+            name="duration"
+            type="String" />
+
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -49,7 +53,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginHorizontal="5dp"
             android:gravity="center"
-            android:text="@{data.duration>0?String.valueOf(data.duration):@string/start_tv}"
+            android:text="@{duration!=null?duration:@string/start_tv}"
             android:textColor="?primary" />
     </RelativeLayout>
 </layout>

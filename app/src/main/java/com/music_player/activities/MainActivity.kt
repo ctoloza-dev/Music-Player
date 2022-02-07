@@ -39,6 +39,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var musicAdapter: MusicAdapter
 
+    companion object {
+        lateinit var listSong: ArrayList<SongsData>
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -96,13 +100,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadSongs() = CoroutineScope(Dispatchers.Main).launch {
-        val musicList = getAllAudio()
-        Collections.sort(musicList, CustomComparator())
+        listSong = getAllAudio()
+        Collections.sort(listSong, CustomComparator())
         binding.songsList.setHasFixedSize(true)
         binding.songsList.setItemViewCacheSize(13)
         binding.songsList.layoutManager =
             LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
-        musicAdapter = MusicAdapter(this@MainActivity, musicList)
+        musicAdapter = MusicAdapter(this@MainActivity, listSong)
         binding.songsList.adapter = musicAdapter
         binding.total = musicAdapter.itemCount
     }
