@@ -25,6 +25,8 @@ import com.music_player.interfaces.OnClick
 import com.music_player.models.MenuModel
 import com.music_player.models.SongsData
 import com.music_player.utils.PermissionStatus
+import com.music_player.utils.ResponseListener
+import com.music_player.utils.UtilitiesImpl
 import com.music_player.utils.logs.Logger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -34,6 +36,7 @@ import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
+    private var isViewShowed: Boolean = false
     private var totalSongs = 0
     private lateinit var binding: ActivityMainBinding
     private lateinit var toggle: ActionBarDrawerToggle
@@ -43,11 +46,17 @@ class MainActivity : AppCompatActivity() {
         lateinit var listSong: ArrayList<SongsData>
     }
 
+    private val permissionStatus = PermissionStatus(this@MainActivity)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        initViews()
-        binding.total = totalSongs
+        permissionStatus.checkPermissions(object : ResponseListener {
+            override fun onResponse(response: String?) {
+                initViews()
+                binding.total = totalSongs
+            }
+        })
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
@@ -96,6 +105,7 @@ class MainActivity : AppCompatActivity() {
             R.string.close
         )
         (binding.root as DrawerLayout).addDrawerListener(toggle)
+        isViewShowed = true
         loadSongs().start()
     }
 
@@ -138,11 +148,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun requestRuntimePerms() {
-        val permissionStatus = PermissionStatus(this@MainActivity)
-        if (!permissionStatus.validatePermissions()) {
-            permissionStatus.confirmPermissionMsg()
-            return
-        }
+        permissionStatus.checkPermissions(object : ResponseListener {
+            override fun onResponse(response: String?) {
+                val ctx = this@MainActivity
+                if (response != ctx.getString(R.string.perm_granted)) {
+                    isViewShowed = false
+                    UtilitiesImpl(ctx).showDialogPermission(response!!)
+                }
+                if (!isViewShowed) {
+                    initViews()
+                    binding.total = totalSongs
+                }
+            }
+        })
+        /*   if (!permissionStatus.validatePermissions()) {
+               permissionStatus.confirmPermissionMsg()
+               return
+           }*/
     }
 
     override fun onBackPressed() {

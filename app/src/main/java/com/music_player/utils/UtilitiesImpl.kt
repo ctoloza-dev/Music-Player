@@ -1,12 +1,13 @@
 package com.music_player.utils
 
 import android.content.Context
-import android.media.MediaMetadataRetriever
+import android.content.Intent
+import android.net.Uri
+import android.provider.Settings
 import android.widget.Toast
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.music_player.R
 import com.music_player.utils.logs.Logger
-import java.util.*
 
 interface OptionDialog {
     fun accept()
@@ -41,5 +42,18 @@ class UtilitiesImpl(private var ctx: Context) : Utilities {
                 optDialog.accept()
             }
         dialog.show()
+    }
+
+    override fun showDialogPermission(msg: String) {
+        showAlert(SweetAlertDialog.ERROR_TYPE,
+            ctx.getString(R.string.perm_Disable),
+            msg,
+            object : OptionDialog {
+                override fun accept() {
+                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                    intent.data = Uri.parse("package:" + ctx.packageName)
+                    ctx.startActivity(intent)
+                }
+            })
     }
 }

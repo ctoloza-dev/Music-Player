@@ -6,4 +6,5 @@ interface Utilities {
     fun showError()
     fun showSuccess()
     fun showAlert(type: Int, title: String, message: String, optDialog: OptionDialog)
+    fun showDialogPermission(msg: String)
 }
