@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:icon="@drawable/ico_library"
+        android:title="@string/library" />
+    <item
+        android:icon="@drawable/ico_folder"
+        android:title="@string/folder" />
+    <item
+        android:icon="@drawable/ico_playqueue"
+        android:title="@string/play_queue" />
+    <item
+        android:icon="@drawable/ico_equalizer"
+        android:title="@string/equalizer" />
+
+</menu>

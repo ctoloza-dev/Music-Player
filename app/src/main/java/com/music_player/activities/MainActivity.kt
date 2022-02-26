@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.provider.MediaStore.Audio.Media
+import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +18,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.music_player.R
 import com.music_player.adapters.MusicAdapter
 import com.music_player.adapters.OptionsAdapter
@@ -82,10 +84,17 @@ class MainActivity : AppCompatActivity() {
             Logger.error("Clicked ${item.title}")
             true
         }
+        val btnView = findViewById<BottomNavigationView>(R.id.btnView)
+
         val list = arrayListOf<MenuModel>()
         list.add(MenuModel(getString(R.string.shuffle), R.drawable.ico_shuffle))
         list.add(MenuModel(getString(R.string.favourites), R.drawable.ico_favorite))
         list.add(MenuModel(getString(R.string.playlist), R.drawable.ico_playlist))
+
+        list.forEachIndexed { index, menu ->
+            btnView.menu.add(Menu.NONE, index, Menu.NONE, menu.btn).setIcon(menu.drawable)
+        }
+        btnView.selectedItemId = 0
 
         val recycler = findViewById<View>(R.id.opts) as RecyclerView
         recycler.adapter = OptionsAdapter(list, false, onClick)
