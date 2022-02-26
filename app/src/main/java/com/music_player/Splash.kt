@@ -5,8 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.LottieAnimationView
-import com.music_player.activities.MainActivity
-
+import com.music_player.views.MainActivity
 
 lateinit var animation: LottieAnimationView
 

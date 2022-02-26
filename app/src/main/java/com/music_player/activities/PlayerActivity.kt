@@ -17,6 +17,7 @@ import com.music_player.interfaces.OnClick
 import com.music_player.models.MenuModel
 import com.music_player.models.SongsData
 import com.music_player.utils.logs.Logger
+import com.music_player.viewmodel.SongsViewModel.Companion.listSong
 
 class PlayerActivity : AppCompatActivity() {
     private var binding: ActivityPlayerBinding? = null
@@ -57,7 +58,7 @@ class PlayerActivity : AppCompatActivity() {
         when (intent.getSerializableExtra("class")) {
             MusicAdapter::class.java -> {
                 musicList = ArrayList()
-                musicList.addAll(MainActivity.listSong)
+                musicList.addAll(listSong)
                 initLayout()
                 createMediaPlayer()
             }
