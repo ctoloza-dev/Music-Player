@@ -67,6 +67,7 @@
             android:orientation="horizontal">
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/prevSong"
                 style="@style/musicBtn2"
                 android:contentDescription="@string/prev_song"
                 app:icon="@drawable/ico_prev" />
@@ -79,6 +80,7 @@
                 app:icon="@drawable/ico_pause" />
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/nextSong"
                 style="@style/musicBtn2"
                 android:contentDescription="@string/next_song"
                 app:icon="@drawable/ico_next" />

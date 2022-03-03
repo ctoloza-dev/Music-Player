@@ -24,9 +24,10 @@ class PlayerViewModel @Inject constructor(
     @ApplicationContext context: Context
 ) : ViewModelUtils(context) {
     var optionsMenu = MutableLiveData<ArrayList<MenuModel>>()
-    private var musicList = ArrayList<SongsData>()
-    val currentSong = MutableLiveData<SongsData>()
     var playPauseDrawable = MutableLiveData<Int>()
+    val currentSong = MutableLiveData<SongsData>()
+
+    private var position: Int = 0
 
 
     @Inject
@@ -42,21 +43,21 @@ class PlayerViewModel @Inject constructor(
         optionsMenu.postValue(list)
     }
 
-    fun loadSongList(clazz: Serializable?, position: Int) {
+    fun loadSongList(clazz: Serializable?, pos: Int) {
+        position = pos
         when (clazz) {
             MusicAdapter::class.java -> {
-                musicList.addAll(listSong)
-                currentSong.postValue(musicList[position])
-                createMediaPlayer(musicList[position])
+                createMediaPlayer()
             }
         }
     }
 
-    private fun createMediaPlayer(songsData: SongsData) {
+    private fun createMediaPlayer() {
+        val currSong = listSong[position]
+        currentSong.postValue(currSong)
         try {
-//            if (mediaPlayer == null) mediaPlayer = MediaPlayer()
             mediaPlayer.reset()
-            mediaPlayer.setDataSource(songsData.path)
+            mediaPlayer.setDataSource(currSong.path)
             mediaPlayer.prepare()
             mediaPlayer.start()
             playPause()
@@ -70,9 +71,25 @@ class PlayerViewModel @Inject constructor(
         override fun onCLick(v: View) {
             when (v.contentDescription) {
                 getString(R.string.play_pause) -> playPause()
+                getString(R.string.prev_song) -> prevNextSong(false)
+                getString(R.string.next_song) -> prevNextSong(true)
             }
             Logger.error("Data: ${v.contentDescription}")
         }
+    }
+
+    private fun prevNextSong(increment: Boolean) {
+        if (increment) {
+            if (listSong.size - 1 == position)
+                position = 0
+            else ++position
+        } else {
+            if (0 == position)
+                position = listSong.size - 1
+            else --position
+        }
+        isPlaying = false
+        createMediaPlayer()
     }
 
     private fun playPause() {

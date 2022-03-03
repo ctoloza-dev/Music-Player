@@ -41,6 +41,8 @@ class PlayerActivity : AppCompatActivity() {
         playerViewModel.getMenu()
         initializeLayout()
         binding!!.playPause.setOnClickListener { playerViewModel.onClick.onCLick(it) }
+        binding!!.prevSong.setOnClickListener { playerViewModel.onClick.onCLick(it) }
+        binding!!.nextSong.setOnClickListener { playerViewModel.onClick.onCLick(it) }
     }
 
     private fun initializeLayout() {
