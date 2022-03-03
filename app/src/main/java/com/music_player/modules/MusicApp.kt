@@ -5,7 +5,7 @@ import dagger.hilt.android.HiltAndroidApp
 
 
 /**
-* Created by David on 02-03-2022.
-*/
+ * Created by David on 02-03-2022.
+ */
 @HiltAndroidApp
-class MusicApp:Application()
+class MusicApp : Application()

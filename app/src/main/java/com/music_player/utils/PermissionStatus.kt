@@ -14,9 +14,9 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 /**
-* Created by David on 28-01-2022.
-*/
-open class PermissionStatus @Inject constructor(@ApplicationContext val context: Context){
+ * Created by David on 28-01-2022.
+ */
+open class PermissionStatus @Inject constructor(@ApplicationContext val context: Context) {
 //    @Inject
 //    lateinit var context: Context
 

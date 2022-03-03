@@ -1,6 +1,5 @@
 package com.music_player.viewmodel
 
-import android.app.Application
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.content.res.AppCompatResources

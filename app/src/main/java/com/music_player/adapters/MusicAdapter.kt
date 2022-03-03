@@ -9,14 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.music_player.R
-import com.music_player.views.PlayerActivity
 import com.music_player.databinding.MusicItemBinding
 import com.music_player.models.SongsData
 import com.music_player.models.formatDuration
+import com.music_player.views.PlayerActivity
 
 /**
-* Created by David on 02-02-2022.
-*/
+ * Created by David on 02-02-2022.
+ */
 
 class MusicAdapter(private val ctx: Context, private val musicList: ArrayList<SongsData>) :
     RecyclerView.Adapter<MusicAdapter.ViewHolder>() {

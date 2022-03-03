@@ -1,8 +1,8 @@
 package com.music_player.utils
 
 /**
-* Created by David on 02-03-2022.
-*/
+ * Created by David on 02-03-2022.
+ */
 open class Globals {
     companion object {
         const val printStack = true

@@ -11,8 +11,8 @@ import com.music_player.utils.logs.Logger
 import javax.inject.Inject
 
 /**
-* Created by David on 27-01-2022.
-*/
+ * Created by David on 27-01-2022.
+ */
 interface OptionDialog {
     fun accept()
 }

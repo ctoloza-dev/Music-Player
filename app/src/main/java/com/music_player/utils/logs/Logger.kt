@@ -2,12 +2,11 @@ package com.music_player.utils.logs
 
 import com.music_player.utils.Globals
 import com.music_player.utils.logs.LogType.*
-import javax.inject.Inject
 
 
 /**
-* Created by David on 15-12-2021.
-*/
+ * Created by David on 15-12-2021.
+ */
 open class Logger {
     companion object {
 

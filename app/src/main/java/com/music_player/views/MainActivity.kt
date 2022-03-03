@@ -25,8 +25,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
-* Created by David on 26-02-2022.
-*/
+ * Created by David on 26-02-2022.
+ */
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 

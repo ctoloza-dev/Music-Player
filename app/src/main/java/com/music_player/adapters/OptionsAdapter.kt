@@ -11,8 +11,8 @@ import com.music_player.models.MenuModel
 
 
 /**
-* Created by David on 28-01-2022.
-*/
+ * Created by David on 28-01-2022.
+ */
 
 class OptionsAdapter(
     private var mFiles: ArrayList<MenuModel>,

@@ -1,8 +1,6 @@
 package com.music_player.viewmodel
 
-import android.app.Application
 import android.content.Context
-import androidx.lifecycle.ViewModel
 import com.music_player.models.SongsData
 import com.music_player.repository.AudioHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,11 +9,11 @@ import java.util.*
 import javax.inject.Inject
 
 /**
-* Created by David on 02-03-2022.
-*/
+ * Created by David on 02-03-2022.
+ */
 @HiltViewModel
 class SongsViewModel @Inject constructor(
-    @ApplicationContext  context: Context
+    @ApplicationContext context: Context
 ) : ViewModelUtils(context) {
     @Inject
     lateinit var audioHelper: AudioHelper

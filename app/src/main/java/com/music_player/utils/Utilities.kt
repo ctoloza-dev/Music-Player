@@ -2,8 +2,8 @@ package com.music_player.utils
 
 
 /**
-* Created by David on 27-01-2022.
-*/
+ * Created by David on 27-01-2022.
+ */
 interface Utilities {
     fun showToast(msg: Any, duration: Int)
     fun showError()
