@@ -8,12 +8,18 @@ import android.widget.Toast
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.music_player.R
 import com.music_player.utils.logs.Logger
+import javax.inject.Inject
 
+/**
+* Created by David on 27-01-2022.
+*/
 interface OptionDialog {
     fun accept()
 }
 
-class UtilitiesImpl(private var ctx: Context) : Utilities {
+class UtilitiesImpl @Inject constructor() : Utilities {
+    @Inject
+    lateinit var ctx: Context
 
     override fun showToast(msg: Any, duration: Int) {
         var message = "No Info Found"

@@ -10,8 +10,15 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.music_player.Globals.Companion.permits
 import com.music_player.R
 import com.music_player.utils.logs.Logger
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-open class PermissionStatus(var context: Context) {
+/**
+* Created by David on 28-01-2022.
+*/
+open class PermissionStatus @Inject constructor(@ApplicationContext val context: Context){
+//    @Inject
+//    lateinit var context: Context
 
     open fun checkPermissions(response: ResponseListener) {
         Dexter.withContext(context)

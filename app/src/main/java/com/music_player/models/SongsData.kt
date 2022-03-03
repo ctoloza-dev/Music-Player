@@ -2,6 +2,9 @@ package com.music_player.models
 
 import java.util.concurrent.TimeUnit
 
+/**
+* Created by David on 07-02-2022.
+*/
 data class SongsData(
     val id: String?,
     val title: String?,

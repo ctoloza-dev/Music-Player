@@ -1,12 +1,24 @@
 package com.music_player.viewmodel
 
 import android.app.Application
+import android.content.Context
+import androidx.lifecycle.ViewModel
 import com.music_player.models.SongsData
 import com.music_player.repository.AudioHelper
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.*
+import javax.inject.Inject
 
-class SongsViewModel(application: Application) : ViewModelUtils(application) {
-    private var audioHelper = AudioHelper(context)
+/**
+* Created by David on 02-03-2022.
+*/
+@HiltViewModel
+class SongsViewModel @Inject constructor(
+    @ApplicationContext  context: Context
+) : ViewModelUtils(context) {
+    @Inject
+    lateinit var audioHelper: AudioHelper
 
     companion object {
         var listSong = ArrayList<SongsData>()

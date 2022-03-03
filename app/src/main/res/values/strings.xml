@@ -9,6 +9,9 @@
     <string name="deny">Deny</string>
     <string name="opt_yes">Yes</string>
     <string name="opt_no">No</string>
+    <string name="play_pause">Play-Pause</string>
+    <string name="next_song">Next Song</string>
+    <string name="prev_song">Previous Song</string>
     <string name="songs_name">Unknown Song</string>
     <string name="songs_album">Unknown Song</string>
     <string name="file_name">File Name</string>
@@ -32,4 +35,6 @@
     <string name="play_queue">Play Queue</string>
     <string name="scan">Scan Media</string>
     <string name="about">About</string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

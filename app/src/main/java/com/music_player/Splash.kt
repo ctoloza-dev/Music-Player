@@ -9,6 +9,9 @@ import com.music_player.views.MainActivity
 
 lateinit var animation: LottieAnimationView
 
+/**
+* Created by David on 20-01-2022.
+*/
 class Splash : AppCompatActivity() {
     private val secs: Long = 2
     override fun onCreate(savedInstanceState: Bundle?) {

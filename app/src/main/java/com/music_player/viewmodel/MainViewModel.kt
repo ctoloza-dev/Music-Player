@@ -1,20 +1,26 @@
 package com.music_player.viewmodel
 
-import android.app.Application
+import android.content.Context
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.music_player.R
-import com.music_player.activities.FavouriteActivity
-import com.music_player.activities.PlayerActivity
-import com.music_player.activities.PlaylistActivity
 import com.music_player.interfaces.OnClick
 import com.music_player.models.MenuModel
 import com.music_player.utils.ResponseListener
-import com.music_player.utils.UtilitiesImpl
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class MainViewModel(application: Application) : ViewModelUtils(application) {
+/**
+ * Created by David on 02-03-2022.
+ */
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    @ApplicationContext context: Context
+) : ViewModelUtils(context) {
     var optionsMenu = MutableLiveData<ArrayList<MenuModel>>()
     var isPermissionGive = MutableLiveData<Boolean>()
+
 
     fun getMenu() {
         val list = arrayListOf<MenuModel>()
@@ -37,7 +43,7 @@ class MainViewModel(application: Application) : ViewModelUtils(application) {
             override fun onResponse(response: String?) {
                 if (response != getString(R.string.perm_granted)) {
                     isPermissionGive.postValue(false)
-                    UtilitiesImpl(context).showDialogPermission(response!!)
+                    utils.showDialogPermission(response!!)
                 }
             }
         })
@@ -45,25 +51,8 @@ class MainViewModel(application: Application) : ViewModelUtils(application) {
 
     val onClick = object : OnClick {
         override fun onCLick(v: View) {
-            var clazz: Class<*>? = null
             if (v.contentDescription != null) {
-                clazz = when {
-                    v.contentDescription.equals(getString(R.string.shuffle)) -> {
-                        PlayerActivity::class.java
-                    }
-                    v.contentDescription.equals(getString(R.string.favourites)) -> {
-                        FavouriteActivity::class.java
-                    }
-                    v.contentDescription.equals(getString(R.string.playlist)) -> {
-                        PlaylistActivity::class.java
-                    }
-                    else -> {
-                        null
-                    }
-                }
-            }
-            if (clazz != null) {
-                startActivity(clazz)
+                startActivity(getClassByDesc(v.contentDescription))
             }
         }
     }

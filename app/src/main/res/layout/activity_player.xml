@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        tools:context=".activities.PlayerActivity">
+        tools:context=".views.PlayerActivity">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -68,16 +68,19 @@
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 style="@style/musicBtn2"
+                android:contentDescription="@string/prev_song"
                 app:icon="@drawable/ico_prev" />
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                style="@style/musicBtn"
                 android:id="@+id/playPause"
+                style="@style/musicBtn"
                 android:layout_marginHorizontal="15dp"
+                android:contentDescription="@string/play_pause"
                 app:icon="@drawable/ico_pause" />
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 style="@style/musicBtn2"
+                android:contentDescription="@string/next_song"
                 app:icon="@drawable/ico_next" />
 
         </LinearLayout>

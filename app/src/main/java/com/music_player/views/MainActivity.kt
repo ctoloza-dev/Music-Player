@@ -19,10 +19,15 @@ import com.music_player.databinding.ActivityMainBinding
 import com.music_player.utils.logs.Logger
 import com.music_player.viewmodel.MainViewModel
 import com.music_player.viewmodel.SongsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+* Created by David on 26-02-2022.
+*/
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

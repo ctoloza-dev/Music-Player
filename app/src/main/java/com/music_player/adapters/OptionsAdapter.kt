@@ -10,6 +10,10 @@ import com.music_player.interfaces.OnClick
 import com.music_player.models.MenuModel
 
 
+/**
+* Created by David on 28-01-2022.
+*/
+
 class OptionsAdapter(
     private var mFiles: ArrayList<MenuModel>,
     private var isImage: Boolean,

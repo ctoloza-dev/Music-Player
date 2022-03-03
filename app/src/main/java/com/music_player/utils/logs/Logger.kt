@@ -1,13 +1,13 @@
 package com.music_player.utils.logs
 
+import com.music_player.utils.Globals
 import com.music_player.utils.logs.LogType.*
+import javax.inject.Inject
+
 
 /**
- * Created by zhouqiang on 2017/3/8.
- *
- * @author zhouqiang
- * sdk全局日主输出
- */
+* Created by David on 15-12-2021.
+*/
 open class Logger {
     companion object {
 
@@ -119,7 +119,11 @@ open class Logger {
                 }
             }
             if (e != null) {
-                msg.append("\n").append(getStackLog(e.stackTrace))
+                if (Globals.printStack) {
+                    e.printStackTrace()
+                } else {
+                    msg.append("\n").append(getStackLog(e.stackTrace))
+                }
             }
             return msg.toString()
         }
@@ -134,12 +138,7 @@ open class Logger {
                 sb.append("Nom del archivo: ").append(element.fileName).append("\n")
                 sb.append("Num de la linea: ").append(element.lineNumber).append("\n")
                 sb.append("Nomb del metodo: ").append(element.methodName).append("\n")
-                sb.append(
-                    """
-                        --
-                        
-                        """.trimIndent()
-                )
+                sb.append(Globals.padText("-", 20, Globals.PAD_RIGHT, '-'))
             }
             return sb.toString()
         }
