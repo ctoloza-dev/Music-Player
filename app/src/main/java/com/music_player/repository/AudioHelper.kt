@@ -4,7 +4,7 @@ import android.content.Context
 import android.database.Cursor
 import android.net.Uri
 import android.provider.MediaStore
-import com.music_player.models.SongsData
+import com.music_player.repository.models.SongsData
 import java.io.File
 import javax.inject.Inject
 

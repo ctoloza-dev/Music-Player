@@ -13,8 +13,8 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.music_player.R
-import com.music_player.adapters.MusicAdapter
-import com.music_player.adapters.OptionsAdapter
+import com.music_player.viewmodel.adapters.MusicAdapter
+import com.music_player.viewmodel.adapters.OptionsAdapter
 import com.music_player.databinding.ActivityMainBinding
 import com.music_player.utils.logs.Logger
 import com.music_player.viewmodel.MainViewModel

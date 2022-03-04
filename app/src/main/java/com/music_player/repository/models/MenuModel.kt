@@ -1,4 +1,4 @@
-package com.music_player.models
+package com.music_player.repository.models
 
 /**
  * Created by David on 27-01-2022.

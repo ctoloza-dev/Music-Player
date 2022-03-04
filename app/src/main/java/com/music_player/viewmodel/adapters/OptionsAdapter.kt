@@ -1,4 +1,4 @@
-package com.music_player.adapters
+package com.music_player.viewmodel.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.music_player.R
 import com.music_player.databinding.BtnItemBinding
 import com.music_player.interfaces.OnClick
-import com.music_player.models.MenuModel
+import com.music_player.repository.models.MenuModel
 
 
 /**

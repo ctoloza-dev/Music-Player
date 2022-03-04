@@ -1,16 +1,14 @@
 package com.music_player.views
 
 import android.os.Bundle
-import android.view.View
+import android.view.Menu
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.music_player.R
-import com.music_player.adapters.OptionsAdapter
 import com.music_player.databinding.ActivityPlayerBinding
 import com.music_player.viewmodel.PlayerViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,14 +28,13 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     private fun initOptions() {
-        val recycler = findViewById<View>(R.id.opts) as RecyclerView
+        val btnView = findViewById<BottomNavigationView>(R.id.opts)
         playerViewModel.optionsMenu.observe(this) { listMenu ->
-            recycler.adapter = OptionsAdapter(listMenu, false, playerViewModel.onClick)
-            recycler.layoutManager =
-                LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-            recycler.setHasFixedSize(true)
-            recycler.isNestedScrollingEnabled = false
+            listMenu.forEachIndexed { index, menu ->
+                btnView.menu.add(Menu.NONE, index, Menu.NONE, menu.btn).setIcon(menu.drawable)
+            }
         }
+
         playerViewModel.getMenu()
         initializeLayout()
         binding!!.playPause.setOnClickListener { playerViewModel.onClick.onCLick(it) }

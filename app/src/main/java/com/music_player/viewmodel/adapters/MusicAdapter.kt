@@ -1,4 +1,4 @@
-package com.music_player.adapters
+package com.music_player.viewmodel.adapters
 
 import android.content.Context
 import android.content.Intent
@@ -10,8 +10,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.music_player.R
 import com.music_player.databinding.MusicItemBinding
-import com.music_player.models.SongsData
-import com.music_player.models.formatDuration
+import com.music_player.repository.models.SongsData
+import com.music_player.repository.models.formatDuration
 import com.music_player.views.PlayerActivity
 
 /**

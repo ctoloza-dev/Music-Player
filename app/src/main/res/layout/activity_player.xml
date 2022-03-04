@@ -3,34 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="songName"
-            type="String" />
-    </data>
-
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
+        android:paddingHorizontal="10dp"
         tools:context=".views.PlayerActivity">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/header"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
             android:layout_marginTop="10dp"
-            android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
                 style="@style/playerBtn"
                 android:contentDescription="@string/back"
                 android:src="@drawable/ico_back" />
-
 
             <TextView
                 style="@style/tvDesign1"
@@ -49,22 +42,30 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/songImage"
             style="@style/albumArt"
-            android:src="@drawable/splash" />
+            android:src="@drawable/splash"
+            app:layout_constraintBottom_toTopOf="@+id/songName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header" />
 
         <TextView
             android:id="@+id/songName"
             style="@style/tvDesign"
             android:layout_marginHorizontal="20dp"
-            android:layout_weight="1"
-            android:textSize="18sp" />
+            android:layout_marginBottom="30dp"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/playerOpts"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <LinearLayout
+            android:id="@+id/playerOpts"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:layout_marginVertical="20dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/timeOpts"
+            tools:layout_editor_absoluteX="10dp">
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/prevSong"
@@ -88,11 +89,12 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/timeOpts"
             android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:layout_margin="20dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+            android:layout_height="50dp"
+            android:layout_marginVertical="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/opts">
 
             <TextView
                 style="@style/tvDesign2"
@@ -111,21 +113,12 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/opts"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_marginBottom="0dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/opts"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:background="@android:color/transparent"
-                android:paddingTop="10dp" />
-
-        </LinearLayout>
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

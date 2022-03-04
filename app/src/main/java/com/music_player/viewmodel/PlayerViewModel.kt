@@ -5,10 +5,10 @@ import android.media.MediaPlayer
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.music_player.R
-import com.music_player.adapters.MusicAdapter
+import com.music_player.viewmodel.adapters.MusicAdapter
 import com.music_player.interfaces.OnClick
-import com.music_player.models.MenuModel
-import com.music_player.models.SongsData
+import com.music_player.repository.models.MenuModel
+import com.music_player.repository.models.SongsData
 import com.music_player.utils.logs.Logger
 import com.music_player.viewmodel.SongsViewModel.Companion.listSong
 import dagger.hilt.android.lifecycle.HiltViewModel

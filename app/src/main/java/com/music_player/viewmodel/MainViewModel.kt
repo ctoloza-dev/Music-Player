@@ -5,7 +5,7 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.music_player.R
 import com.music_player.interfaces.OnClick
-import com.music_player.models.MenuModel
+import com.music_player.repository.models.MenuModel
 import com.music_player.utils.ResponseListener
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext

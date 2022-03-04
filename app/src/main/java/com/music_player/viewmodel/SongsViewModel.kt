@@ -1,7 +1,7 @@
 package com.music_player.viewmodel
 
 import android.content.Context
-import com.music_player.models.SongsData
+import com.music_player.repository.models.SongsData
 import com.music_player.repository.AudioHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext

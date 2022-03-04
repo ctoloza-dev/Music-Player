@@ -1,4 +1,4 @@
-package com.music_player.models
+package com.music_player.repository.models
 
 import java.util.concurrent.TimeUnit
 

@@ -45,8 +45,9 @@
 
     <style name="tvDesign1" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">?primary</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
     <style name="tvDesign2" parent="Theme.MusicPlayer">
@@ -97,8 +98,8 @@
     </style>
 
     <style name="albumArt" parent="Theme.MusicPlayer">
-        <item name="android:layout_width">250dp</item>
-        <item name="android:layout_height">250dp</item>
+        <item name="android:layout_width">330dp</item>
+        <item name="android:layout_height">330dp</item>
         <item name="android:layout_margin">10dp</item>
         <item name="shapeAppearanceOverlay">@style/curved</item>
         <item name="strokeColor">?primary</item>
