@@ -2,11 +2,13 @@ package com.music_player.viewmodel
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.lifecycle.ViewModel
 import com.music_player.R
 import com.music_player.activities.FavouriteActivity
 import com.music_player.activities.PlaylistActivity
+import com.music_player.utils.Globals.Companion.ExtrasNames
 import com.music_player.utils.PermissionStatus
 import com.music_player.utils.Utilities
 import com.music_player.views.PlayerActivity
@@ -35,19 +37,14 @@ open class ViewModelUtils @Inject constructor(
 
     fun getDrawable(id: Int) = AppCompatResources.getDrawable(context, id)
 
-    fun startActivity(clazz: Class<*>?) =
-        when {
-            (clazz != null) -> context.startActivity(Intent(context, clazz))
-            else -> {}
-        }
 
-    fun getClassByDesc(contentDescription: CharSequence): Class<*>? {
-        return when (contentDescription) {
-            getString(R.string.shuffle) -> PlayerActivity::class.java
-            getString(R.string.favourites) -> FavouriteActivity::class.java
-            getString(R.string.playlist) -> PlaylistActivity::class.java
-            else -> null
-        }
+    fun <T> Context.openActivity(it: Class<T>, extras: Bundle.() -> Unit = {}) {
+        val intent = Intent(context, it)
+        intent.putExtras(Bundle().apply(extras))
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
     }
+
+    fun getDef(name: ExtrasNames) = name.description
 
 }

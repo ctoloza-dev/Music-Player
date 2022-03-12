@@ -30,7 +30,7 @@ class PlayerViewModel @Inject constructor(
     val currentSong = MutableLiveData<SongsData>()
 
     private var position: Int = 0
-    var songsList = ArrayList<SongsData>()
+    private var songsList = ArrayList<SongsData>()
 
 
     @Inject

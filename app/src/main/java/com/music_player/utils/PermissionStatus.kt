@@ -7,7 +7,7 @@ import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
-import com.music_player.Globals.Companion.permits
+import com.music_player.utils.Globals.Companion.permits
 import com.music_player.R
 import com.music_player.utils.logs.Logger
 import dagger.hilt.android.qualifiers.ApplicationContext

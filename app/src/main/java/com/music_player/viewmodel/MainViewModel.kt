@@ -6,7 +6,11 @@ import androidx.lifecycle.MutableLiveData
 import com.music_player.R
 import com.music_player.interfaces.OnClick
 import com.music_player.repository.models.MenuModel
+import com.music_player.utils.Globals.Companion.ExtrasNames
+import com.music_player.utils.Globals.Companion.FILTERS
 import com.music_player.utils.ResponseListener
+import com.music_player.views.MainActivity
+import com.music_player.views.PlayerActivity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
@@ -52,7 +56,16 @@ class MainViewModel @Inject constructor(
     val onClick = object : OnClick {
         override fun onCLick(v: View) {
             if (v.contentDescription != null) {
-                startActivity(getClassByDesc(v.contentDescription))
+                when (v.contentDescription) {
+                    getString(R.string.shuffle) -> context.openActivity(PlayerActivity::class.java) {
+                        putInt(getDef(ExtrasNames.INDEX), 0)
+                        putSerializable(getDef(ExtrasNames.CLAZZ), MainActivity::class.java)
+                        putSerializable(getDef(ExtrasNames.FILTER), FILTERS.SHUFFLE)
+                    }
+                    getString(R.string.favourites) -> context.openActivity(PlayerActivity::class.java)
+                    getString(R.string.playlist) -> context.openActivity(PlayerActivity::class.java)
+                    else -> {}
+                }
             }
         }
     }

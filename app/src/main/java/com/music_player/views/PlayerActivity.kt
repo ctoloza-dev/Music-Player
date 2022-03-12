@@ -10,6 +10,8 @@ import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.music_player.R
 import com.music_player.databinding.ActivityPlayerBinding
+import com.music_player.utils.Globals
+import com.music_player.utils.Globals.Companion.ExtrasNames.*
 import com.music_player.viewmodel.PlayerViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -43,8 +45,10 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     private fun initializeLayout() {
-        val position = intent.getIntExtra("index", 0)
-        val clazz = intent.getSerializableExtra("class")
+        val position = intent.getIntExtra(INDEX.description, 0)
+        val clazz = intent.getSerializableExtra(CLAZZ.description)
+        var filter = intent.getSerializableExtra(FILTER.description)
+        if (filter == null) filter = Globals.Companion.FILTERS.NONE
         playerViewModel.currentSong.observe(this) {
             Glide.with(this)
                 .load(it.artUri)
@@ -55,7 +59,7 @@ class PlayerActivity : AppCompatActivity() {
         playerViewModel.playPauseDrawable.observe(this) {
             binding!!.playPause.setIconResource(it)
         }
-        playerViewModel.loadSongList(clazz, position)
+        playerViewModel.loadSongList(clazz, position, filter)
     }
 
 
