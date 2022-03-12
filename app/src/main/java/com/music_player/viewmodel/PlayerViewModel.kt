@@ -5,12 +5,14 @@ import android.media.MediaPlayer
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.music_player.R
-import com.music_player.viewmodel.adapters.MusicAdapter
 import com.music_player.interfaces.OnClick
 import com.music_player.repository.models.MenuModel
 import com.music_player.repository.models.SongsData
+import com.music_player.utils.Globals.Companion.FILTERS
 import com.music_player.utils.logs.Logger
 import com.music_player.viewmodel.SongsViewModel.Companion.listSong
+import com.music_player.viewmodel.adapters.MusicAdapter
+import com.music_player.views.MainActivity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.io.Serializable
@@ -28,6 +30,7 @@ class PlayerViewModel @Inject constructor(
     val currentSong = MutableLiveData<SongsData>()
 
     private var position: Int = 0
+    var songsList = ArrayList<SongsData>()
 
 
     @Inject
@@ -43,20 +46,29 @@ class PlayerViewModel @Inject constructor(
         optionsMenu.postValue(list)
     }
 
-    fun loadSongList(clazz: Serializable?, pos: Int) {
+    fun loadSongList(clazz: Serializable?, pos: Int, filter: Serializable?) {
         position = pos
+        songsList.addAll(listSong)
+        mediaPlayer.reset()
+        songsFilter(filter)
         when (clazz) {
-            MusicAdapter::class.java -> {
+            MusicAdapter::class.java, MainActivity::class.java ->
                 createMediaPlayer()
-            }
+        }
+    }
+
+    private fun songsFilter(filter: Serializable?) {
+        when (filter) {
+            FILTERS.NONE -> Logger.info("No Filter present")
+            FILTERS.SHUFFLE -> songsList.shuffle()
+            FILTERS.FAVOURITE -> {}
         }
     }
 
     private fun createMediaPlayer() {
-        val currSong = listSong[position]
+        val currSong = songsList[position]
         currentSong.postValue(currSong)
         try {
-            mediaPlayer.reset()
             mediaPlayer.setDataSource(currSong.path)
             mediaPlayer.prepare()
             mediaPlayer.start()
@@ -80,12 +92,12 @@ class PlayerViewModel @Inject constructor(
 
     private fun prevNextSong(increment: Boolean) {
         if (increment) {
-            if (listSong.size - 1 == position)
+            if (songsList.size - 1 == position)
                 position = 0
             else ++position
         } else {
             if (0 == position)
-                position = listSong.size - 1
+                position = songsList.size - 1
             else --position
         }
         isPlaying = false
