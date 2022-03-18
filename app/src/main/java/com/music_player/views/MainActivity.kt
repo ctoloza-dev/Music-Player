@@ -28,7 +28,7 @@ import kotlinx.coroutines.launch
  * Created by David on 26-02-2022.
  */
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val mainViewModel: MainViewModel by viewModels()

@@ -3,7 +3,6 @@ package com.music_player.views
 import android.os.Bundle
 import android.view.Menu
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -19,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
  * Created by David on 26-01-2022.
  */
 @AndroidEntryPoint
-class PlayerActivity : AppCompatActivity() {
+class PlayerActivity : BaseActivity() {
     private var binding: ActivityPlayerBinding? = null
     private val playerViewModel: PlayerViewModel by viewModels()
 

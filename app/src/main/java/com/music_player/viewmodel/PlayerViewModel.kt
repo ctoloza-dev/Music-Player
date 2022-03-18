@@ -1,7 +1,6 @@
 package com.music_player.viewmodel
 
 import android.content.Context
-import android.media.MediaPlayer
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.music_player.R
@@ -31,10 +30,6 @@ class PlayerViewModel @Inject constructor(
 
     private var position: Int = 0
     private var songsList = ArrayList<SongsData>()
-
-
-    @Inject
-    lateinit var mediaPlayer: MediaPlayer
     private var isPlaying = false
 
     fun getMenu() {

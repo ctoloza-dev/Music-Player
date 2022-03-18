@@ -7,13 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.LottieAnimationView
 import com.music_player.views.MainActivity
 
-lateinit var animation: LottieAnimationView
 
 /**
  * Created by David on 20-01-2022.
  */
 class Splash : AppCompatActivity() {
     private val secs: Long = 2
+    private lateinit var animation: LottieAnimationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)

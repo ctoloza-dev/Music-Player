@@ -2,16 +2,14 @@ package com.music_player.viewmodel
 
 import android.content.Context
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.lifecycle.ViewModel
-import com.music_player.R
-import com.music_player.activities.FavouriteActivity
-import com.music_player.activities.PlaylistActivity
+import com.music_player.repository.models.MusicService
 import com.music_player.utils.Globals.Companion.ExtrasNames
 import com.music_player.utils.PermissionStatus
 import com.music_player.utils.Utilities
-import com.music_player.views.PlayerActivity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
@@ -26,12 +24,12 @@ open class ViewModelUtils @Inject constructor(
     @Inject
     lateinit var permissionStatus: PermissionStatus
 
-
-//    val context by lazy { application }
-
     @Inject
     lateinit var utils: Utilities
 
+    companion object {
+        lateinit var mediaPlayer: MediaPlayer
+    }
 
     fun getString(id: Int) = context.getString(id)
 
@@ -47,4 +45,9 @@ open class ViewModelUtils @Inject constructor(
 
     fun getDef(name: ExtrasNames) = name.description
 
+    fun setMService(mService: MusicService?) {
+        if (mService != null) {
+            mediaPlayer = mService.mediaPlayer
+        }
+    }
 }
