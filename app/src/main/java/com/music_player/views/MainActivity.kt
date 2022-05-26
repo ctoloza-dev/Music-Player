@@ -5,7 +5,6 @@ import android.os.PersistableBundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
@@ -13,12 +12,12 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.music_player.R
-import com.music_player.viewmodel.adapters.MusicAdapter
-import com.music_player.viewmodel.adapters.OptionsAdapter
 import com.music_player.databinding.ActivityMainBinding
 import com.music_player.utils.logs.Logger
 import com.music_player.viewmodel.MainViewModel
 import com.music_player.viewmodel.SongsViewModel
+import com.music_player.viewmodel.adapters.MusicAdapter
+import com.music_player.viewmodel.adapters.OptionsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

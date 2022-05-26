@@ -10,8 +10,9 @@
     <string name="opt_yes">Si</string>
     <string name="opt_no">No</string>
     <string name="play_pause">Reproducir-Pausar</string>
-    <string name="next_song">Siguiente Canción</string>
-    <string name="prev_song">Anterior Canción</string>
+    <string name="next_song">Siguiente</string>
+    <string name="exit">Salir</string>
+    <string name="prev_song">Anterior</string>
     <string name="songs_name">Canción Desconocida</string>
     <string name="songs_album">Álbum Desconocido</string>
     <string name="file_name">Nombre Archivo</string>
@@ -35,4 +36,6 @@
     <string name="play_queue">Cola de reproduccion</string>
     <string name="scan">Escanear Datos</string>
     <string name="about">Acerca de</string>
+    <string name="now_playing">Sonando Ahora</string>
+    <string name="notification_desc">Ester es un canal importante para mostrar la canción!!</string>
 </resources>

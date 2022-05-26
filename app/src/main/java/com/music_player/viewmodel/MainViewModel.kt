@@ -55,18 +55,19 @@ class MainViewModel @Inject constructor(
 
     val onClick = object : OnClick {
         override fun onCLick(v: View) {
-            if (v.contentDescription != null) {
-                when (v.contentDescription) {
-                    getString(R.string.shuffle) -> context.openActivity(PlayerActivity::class.java) {
-                        putInt(getDef(ExtrasNames.INDEX), 0)
-                        putSerializable(getDef(ExtrasNames.CLAZZ), MainActivity::class.java)
-                        putSerializable(getDef(ExtrasNames.FILTER), FILTERS.SHUFFLE)
+            if (SongsViewModel.listSong.isNotEmpty())
+                if (v.contentDescription != null) {
+                    when (v.contentDescription) {
+                        getString(R.string.shuffle) -> context.openActivity(PlayerActivity::class.java) {
+                            putInt(getDef(ExtrasNames.INDEX), 0)
+                            putSerializable(getDef(ExtrasNames.CLAZZ), MainActivity::class.java)
+                            putSerializable(getDef(ExtrasNames.FILTER), FILTERS.SHUFFLE)
+                        }
+                        getString(R.string.favourites) -> context.openActivity(PlayerActivity::class.java)
+                        getString(R.string.playlist) -> context.openActivity(PlayerActivity::class.java)
+                        else -> {}
                     }
-                    getString(R.string.favourites) -> context.openActivity(PlayerActivity::class.java)
-                    getString(R.string.playlist) -> context.openActivity(PlayerActivity::class.java)
-                    else -> {}
                 }
-            }
         }
     }
 }

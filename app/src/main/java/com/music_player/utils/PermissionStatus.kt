@@ -17,8 +17,6 @@ import javax.inject.Inject
  * Created by David on 28-01-2022.
  */
 open class PermissionStatus @Inject constructor(@ApplicationContext val context: Context) {
-//    @Inject
-//    lateinit var context: Context
 
     open fun checkPermissions(response: ResponseListener) {
         Dexter.withContext(context)

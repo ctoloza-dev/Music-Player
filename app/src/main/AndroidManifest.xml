@@ -8,6 +8,7 @@
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:name=".modules.MusicApp"
@@ -45,8 +46,9 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".repository.models.MusicService"
+        <service android:name=".modules.MusicService" />
+        <receiver
+            android:name=".modules.NotificationReceiver"
             android:enabled="true" />
     </application>
 

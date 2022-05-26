@@ -1,13 +1,18 @@
 package com.music_player.viewmodel
 
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.view.View
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.gson.Gson
 import com.music_player.R
 import com.music_player.interfaces.OnClick
 import com.music_player.repository.models.MenuModel
 import com.music_player.repository.models.SongsData
+import com.music_player.repository.models.getImgArt
 import com.music_player.utils.Globals.Companion.FILTERS
+import com.music_player.utils.Globals.Companion.NotificationItems.*
 import com.music_player.utils.logs.Logger
 import com.music_player.viewmodel.SongsViewModel.Companion.listSong
 import com.music_player.viewmodel.adapters.MusicAdapter
@@ -26,7 +31,9 @@ class PlayerViewModel @Inject constructor(
 ) : ViewModelUtils(context) {
     var optionsMenu = MutableLiveData<ArrayList<MenuModel>>()
     var playPauseDrawable = MutableLiveData<Int>()
-    val currentSong = MutableLiveData<SongsData>()
+    private val _currentSong = MutableLiveData<SongsData>()
+    val currentSong: LiveData<SongsData>
+        get() = _currentSong
 
     private var position: Int = 0
     private var songsList = ArrayList<SongsData>()
@@ -44,7 +51,6 @@ class PlayerViewModel @Inject constructor(
     fun loadSongList(clazz: Serializable?, pos: Int, filter: Serializable?) {
         position = pos
         songsList.addAll(listSong)
-        mediaPlayer.reset()
         songsFilter(filter)
         when (clazz) {
             MusicAdapter::class.java, MainActivity::class.java ->
@@ -62,8 +68,10 @@ class PlayerViewModel @Inject constructor(
 
     private fun createMediaPlayer() {
         val currSong = songsList[position]
-        currentSong.postValue(currSong)
+        _currentSong.postValue(currSong)
+        showNotification(currSong)
         try {
+            mediaPlayer.reset()
             mediaPlayer.setDataSource(currSong.path)
             mediaPlayer.prepare()
             mediaPlayer.start()
@@ -108,5 +116,24 @@ class PlayerViewModel @Inject constructor(
             playPauseDrawable.postValue(R.drawable.ico_pause)
         }
         isPlaying = !isPlaying
+    }
+
+    private fun showNotification(currSong: SongsData) {
+        Logger.error(Gson().toJson(currSong))
+        val imgArt = getImgArt(currSong.path!!)
+        val image = when {
+            imgArt != null -> BitmapFactory.decodeByteArray(imgArt, 0, imgArt.size)
+            else -> BitmapFactory.decodeResource(context.resources, R.drawable.splash)
+        }
+        val notification = notification
+            .setContentTitle(currSong.title)
+            .setContentText(currSong.artists)
+            .updateIcon(image)
+            .addNotificationAction(R.drawable.ico_prev, getString(R.string.prev_song), PREVIOUS)
+            .addNotificationAction(R.drawable.ico_play, getString(R.string.play_pause), PLAY)
+            .addNotificationAction(R.drawable.ico_next, getString(R.string.next_song), NEXT)
+            .addNotificationAction(R.drawable.ico_exit, getString(R.string.exit), EXIT)
+            .build()
+        startForeground(13, notification)
     }
 }
