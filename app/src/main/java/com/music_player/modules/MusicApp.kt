@@ -31,6 +31,5 @@ class MusicApp : Application() {
             val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(notificationChannel)
         }
-        Log.e("Tags:", "Notification");
     }
 }
